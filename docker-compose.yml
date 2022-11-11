@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+    store:
+        image: "mongo:latest"
+        container_name: scraper-store
+        ports:
+            - "6379:6379"
+        volumes: 
+            - cache:/data
+        
+
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: scraper-app
+        ports:
+            - "8080:8080"
+        environment:
+            PORT: 8080
+        depends_on:
+            - store
+volumes:
+  cache:
+    driver: local
