@@ -14,7 +14,9 @@ export default class Scraper {
   innerHTMLToText(html:string): string{
     return html
     .replace(/<br>/g,"\n")
-    .replace(/&nbsp;/," ")
+    .replace(/&nbsp;/g," ")
+    .replace(/<sup>/g,"")
+    .replace(/<\/sup>/g,"")
     .trim()
   }
 }
