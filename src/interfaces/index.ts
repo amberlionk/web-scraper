@@ -5,14 +5,14 @@ export const SUPPORTED_MANUFACTURES = {
 }as const
 export type ISupportedManufactures = typeof SUPPORTED_MANUFACTURES[keyof typeof SUPPORTED_MANUFACTURES]
 
-export interface IModel{
+export type IModel = {
   _id:string,
   title:string,
   manufacturer:ISupportedManufactures
   url:string
 }
 
-export interface IManufacture{
+export type IManufacture = {
   _id:string,
   title:string,
   name:ISupportedManufactures,
