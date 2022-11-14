@@ -1,11 +1,8 @@
 import {getScraperForManufacturer} from "../entities/scraper-factory"
-import {IModel} from "./../interfaces"
+import {IModel,IStorage, IManufacture} from "./../interfaces"
 
 
-type Storage={
-  getModels:()=>Promise<IModel[]>
-  getModel:(id:string)=>Promise<IModel>
-}
+type Storage= Pick<IStorage,"getModels"|"getModel">
 
 export async function getModels(storage:Storage): Promise<IModel[]> {
 return storage.getModels()
@@ -20,7 +17,14 @@ export async function getModelSpec(storage:Storage, modelID: string): Promise<Pr
   if(!model) throw new Error(`Model with ID ${modelID} not found`)
 
   const scraper = await getScraperForManufacturer(model.manufacturer)
-  const productSpec: ProductSpecification = await scraper.getProductSpecification(model.url)
+  const productSpec = await scraper.getProductSpecification(model.url)
 
   return productSpec
+}
+
+
+export async function scrapeModelsList(storage:Storage, manuf:IManufacture): Promise<IModel[]> {
+    const scraper = await getScraperForManufacturer(manuf.name)
+
+  return scraper.getModels(manuf.url)
 }

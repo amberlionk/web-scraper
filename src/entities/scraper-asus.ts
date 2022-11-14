@@ -1,3 +1,4 @@
+import {IModel} from "./../interfaces"
 import Scraper from "./scraper"
 
 interface ProductSpecification{
@@ -68,5 +69,10 @@ export default class AsusScraper extends Scraper {
     }
 
     return productSpec
+  }
+
+  async getModels(url: string):Promise<IModel[]> {
+
+    return []
   }
 }

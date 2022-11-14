@@ -1,8 +1,6 @@
-import {IManufacture} from "../interfaces"
+import {IManufacture, IStorage} from "../interfaces"
 
-type Storage={
-  getManufactures:()=>Promise<IManufacture[]>
-}
+type Storage= Pick<IStorage,"getManufactures">
 
 export async function getManufactures(storage:Storage): Promise<IManufacture[]>{
 
