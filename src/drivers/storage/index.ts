@@ -1,3 +1,3 @@
-import * as InMemoryStorage from "./in-memory/index.ts"
+import * as InMemoryStorage from "./in-memory/index"
 
 export default InMemoryStorage

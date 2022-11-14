@@ -17,7 +17,7 @@ export async function connect():Promise<void>{
   }
 
   models["2"]={
-    _id:"1",
+    _id:"2",
     manufacturer:"asus",
     title:"ROG Phone 5s Pro",
     url:"https://rog.asus.com/ua-ua/phones/rog-phone-5s-pro-model/spec/"
@@ -28,6 +28,13 @@ export async function connect():Promise<void>{
     name:"asus",
     title:"Asus",
     url:"https://www.asus.com/mobile/phones/all-series/filter?Series=ZenFone,ROG-Phone"
+  }
+  
+  manufactures["2"] = {
+    _id:"2",
+    name:"samsung",
+    title:"Samsung",
+    url:"https://"
   }
 }
 

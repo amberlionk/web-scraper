@@ -1,6 +1,10 @@
-import Storage from "../drivers/storage"
 import {IManufacture} from "../interfaces"
 
-export async function getManufactures(): Promise<IManufacture[]>{
-  return Storage.getManufactures()
+type Storage={
+  getManufactures:()=>Promise<IManufacture[]>
+}
+
+export async function getManufactures(storage:Storage): Promise<IManufacture[]>{
+
+  return storage.getManufactures()
 }

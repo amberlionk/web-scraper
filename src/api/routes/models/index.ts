@@ -1,9 +1,9 @@
 import { FromSchema } from 'json-schema-to-ts'
-import { FastifyInstance } from 'fastify'
+import { FastifyPluginAsync } from 'fastify'
 import { getModelSpec, getModels } from "../../../interactors/model"
 
 
-export default async (fastify: FastifyInstance) => {
+const router: FastifyPluginAsync = async (fastify) => {
   const getModelsSchema = {
     response: {
       200: {
@@ -25,7 +25,7 @@ export default async (fastify: FastifyInstance) => {
   fastify.get<{
     Reply: FromSchema<typeof getModelsSchema.response[200]>
   }>('/models', { schema: getModelsSchema }, async function (req, resp) {
-    const models =await  getModels()
+    const models =await  getModels(fastify.storage)
 
     resp.send(models)
   })
@@ -56,8 +56,9 @@ export default async (fastify: FastifyInstance) => {
     Reply: FromSchema<typeof getSpecModelSchema.response[200]>
   }>('/models/:modelID/spec', { schema: getSpecModelSchema }, async function (req, resp) {
     const { modelID } = req.params
-    const productSpec = await getModelSpec(modelID)
+    const productSpec = await getModelSpec(fastify.storage,modelID)
 
     resp.send(productSpec)
   })
 }
+export default router
