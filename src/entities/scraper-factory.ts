@@ -1,10 +1,10 @@
-import {SUPPORTED_MANUFACTURES, ISupportedManufactures} from "./../interfaces"
+import {SUPPORTED_MANUFACTURES, ISupportedManufactures, IScraper} from "./../interfaces"
 import AsusScraper from "./scraper-asus"
+import SamsungScraper from "./scraper-samsung"
 
-type SupportedScrapers = AsusScraper
 const supportedScrapersInstances ={} as {
   [SUPPORTED_MANUFACTURES.asus]:AsusScraper,
-  [SUPPORTED_MANUFACTURES.samsung]:AsusScraper
+  [SUPPORTED_MANUFACTURES.samsung]:SamsungScraper
 }
 
 export async function initScrapers(): Promise<void>{
@@ -14,13 +14,13 @@ export async function initScrapers(): Promise<void>{
   await scraper.init()
   supportedScrapersInstances[SUPPORTED_MANUFACTURES.asus]=scraper
   
-  scraper = new AsusScraper()
+  scraper = new SamsungScraper()
   await scraper.init()
   supportedScrapersInstances[SUPPORTED_MANUFACTURES.samsung]=scraper
 
 }
 
-export async function getScraperForManufacturer(manufacture:ISupportedManufactures): Promise<SupportedScrapers>{
+export async function getScraperForManufacturer(manufacture:ISupportedManufactures): Promise<IScraper> {
   switch (manufacture) {
     case SUPPORTED_MANUFACTURES.asus:
       if(!supportedScrapersInstances[manufacture]) {      
@@ -33,7 +33,7 @@ export async function getScraperForManufacturer(manufacture:ISupportedManufactur
 
     case SUPPORTED_MANUFACTURES.samsung:
       if(!supportedScrapersInstances[manufacture]) {
-        const scraper = new AsusScraper()
+        const scraper = new SamsungScraper()
         await scraper.init()
         supportedScrapersInstances[manufacture]=scraper
       }

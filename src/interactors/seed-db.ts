@@ -15,10 +15,13 @@ export async function seedDB(storage:Storage):Promise<void>{
   if(!(await storage.getModels()).length){
     console.log("Seeding models....");
     for (const manuf of manufacturers) {
-      const models = await scrapeModelsList(storage,manuf)
-
-      await storage.setModels(models)
-      console.log(`Seeding ${manuf.name} done.`);
+      try{
+        const models = await scrapeModelsList(manuf)
+        await storage.setModels(models)
+        console.log(`Seeding ${manuf.name} done.`);
+      }catch(err){
+        console.log(`Failed scrape ${manuf.name}!`);
+      }
     }
     console.log("Seeding models complete.")
   }

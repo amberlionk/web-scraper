@@ -23,7 +23,7 @@ export async function getModelSpec(storage:Storage, modelID: string): Promise<Pr
 }
 
 
-export async function scrapeModelsList(storage:Storage, manuf:IManufacture): Promise<IModel[]> {
+export async function scrapeModelsList(manuf:IManufacture): Promise<IModel[]> {
     const scraper = await getScraperForManufacturer(manuf.name)
 
   return scraper.getModels(manuf.url)

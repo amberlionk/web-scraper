@@ -12,18 +12,18 @@ export const SUPPORTED_MANUFACTURES = {
 export type ISupportedManufactures = typeof SUPPORTED_MANUFACTURES[keyof typeof SUPPORTED_MANUFACTURES]
 
 export const MANUFACTURES: IManufacture[] = [
-  {
-    _id: "1",
-    name: "asus",
-    title: "Asus",
-    url: "https://www.asus.com/ua-ua/mobile/phones/all-series/filter?Series=ZenFone,ROG-Phone"
-  }
   // {
-  //   _id: "2",
-  //   name: "samsung",
-  //   title: "Samsung",
-  //   url: "https://"
+  //   _id: "1",
+  //   name: "asus",
+  //   title: "Asus",
+  //   url: "https://www.asus.com/ua-ua/mobile/phones/all-series/filter?Series=ZenFone,ROG-Phone"
   // }
+  {
+    _id: "2",
+    name: "samsung",
+    title: "Samsung",
+    url: "https://www.samsung.com/ua/smartphones/galaxy-s/"
+  }
 ]
 
 export type IModel = {
