@@ -16,7 +16,7 @@ export const MANUFACTURES: IManufacture[] = [
     _id: "1",
     name: "asus",
     title: "Asus",
-    url: "https://www.asus.com/mobile/phones/all-series/filter?Series=ZenFone,ROG-Phone"
+    url: "https://www.asus.com/ua-ua/mobile/phones/all-series/filter?Series=ZenFone,ROG-Phone"
   }
   // {
   //   _id: "2",
@@ -41,4 +41,10 @@ export type IStorage={
   getModels:()=>Promise<IModel[]>
   setModels:(models:IModel[])=>Promise<void>
   getModel:(id:string)=>Promise<IModel>
+}
+
+export type IScraper={
+  manufacturerName:ISupportedManufactures
+  getProductSpecification:(url:string)=>Promise< {[key: string]: string}>
+  getModels:(url:string)=>Promise<IModel[]>
 }
