@@ -15,7 +15,7 @@ const router: FastifyPluginAsync = async (fastify) => {
           properties: {
             _id: { type: 'string' },
             title: { type: 'string' },
-            manufacturer: { enum:  ["asus", "samsung"] },
+            manufacturer: { enum:  ["asus", "samsung", "huawei"] },
             url: { type: 'string' }
           }
         }

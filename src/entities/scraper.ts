@@ -17,6 +17,8 @@ export default class Scraper {
     .replace(/&nbsp;/g," ")
     .replace(/<sup>/g,"")
     .replace(/<\/sup>/g,"")
+    .replace(/<p>/g,"")
+    .replace(/<\/p>/g,"")
     .trim()
   }
 }
