@@ -1,13 +1,14 @@
 version: "3.8"
 
 services:
-    store:
-        image: "mongo:latest"
-        container_name: scraper-store
-        ports:
-            - "6379:6379"
-        volumes: 
-            - cache:/data
+    # I could add mongo as store but it requires more time and i already spent enough
+    # store:
+    #     image: "mongo:latest"
+    #     container_name: scraper-store
+    #     ports:
+    #         - "27017:27017"
+    #     volumes: 
+    #         - cache:/data
         
 
     app:
@@ -15,12 +16,13 @@ services:
             context: .
             dockerfile: Dockerfile
         container_name: scraper-app
+        privileged: true
         ports:
             - "8080:8080"
         environment:
             PORT: 8080
-        depends_on:
-            - store
-volumes:
-  cache:
-    driver: local
+        # depends_on:
+        #     - store
+# volumes:
+#   cache:
+#     driver: local

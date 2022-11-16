@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "npx tsc",
+    "build:docker": "docker build . --no-cache",
     "start": "node dist/index.js",
     "dev": "ts-node-dev --respawn ./src/index.ts",
     "up": "docker-compose up --build",
